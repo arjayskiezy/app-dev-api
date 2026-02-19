@@ -20,7 +20,6 @@ return new class extends Migration
 
             $table->unique(['subject_schedule_id','day']);
         });
-
     }
 
     /**
