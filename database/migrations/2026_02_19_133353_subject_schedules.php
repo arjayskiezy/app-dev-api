@@ -12,14 +12,20 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('enrollments', function (Blueprint $table){
+        Schema::create('subject_schedules', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('student_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('program_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('subject_id')->constrained()->cascadeOnDelete();
+            $table->string('section', 10);
+            $table->time('time_start');
+            $table->time('time_end');
+            $table->string('room', 10)->nullable();
             $table->string('school_year');
             $table->enum('semester', array_column(Semester::cases(), 'value'));
             $table->timestamps();
+
+            $table->unique(['subject_id','section','school_year','semester']);
         });
+
     }
 
     /**
@@ -27,6 +33,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('enrollments');
+        Schema::dropIfExists('subject_schedules');
+
     }
 };

@@ -1,6 +1,5 @@
 <?php
 
-use App\Enums\Semester;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -12,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('enrollments', function (Blueprint $table){
+        Schema::create('program_subjects', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('student_id')->constrained()->cascadeOnDelete();
             $table->foreignId('program_id')->constrained()->cascadeOnDelete();
-            $table->string('school_year');
-            $table->enum('semester', array_column(Semester::cases(), 'value'));
+            $table->foreignId('subject_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
+
+            $table->unique(['program_id','subject_id']);
         });
     }
 
@@ -27,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('enrollments');
+        Schema::dropIfExists('program_subjects');
     }
 };
