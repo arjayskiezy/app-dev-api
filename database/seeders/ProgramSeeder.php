@@ -289,8 +289,8 @@ class ProgramSeeder extends Seeder
         ],
         [
             'department_id' => 10,
-            'code' => 'SOL',
-            'title' => 'School of Law',
+            'code' => 'BOL',
+            'title' => 'Bachelor of Law',
             'created_at' => now(),
             'updated_at' => now(),
         ],
