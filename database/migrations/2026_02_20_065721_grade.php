@@ -11,20 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('programs', function (Blueprint $table){
-            $table->id();
-            $table->foreignId('department_id')->constrained()->cascadeOnDelete();
-            $table->string('code', 10)->unique();
-            $table->string('title',150);
-            $table->timestamps();
+        Schema::create('grades', function (Blueprint $table) {
+        $table->id();
+        $table->foreignId('subject_enrollment_id')->constrained()->cascadeOnDelete();
+        $table->decimal('grade', 3, 1)->nullable();
+        $table->decimal('retake',3,1)->nullable();
         });
     }
-
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('programs');
+        Schema::dropIfExists('grades');
     }
 };

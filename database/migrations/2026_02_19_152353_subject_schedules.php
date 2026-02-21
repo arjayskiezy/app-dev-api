@@ -15,9 +15,9 @@ return new class extends Migration
         Schema::create('subject_schedules', function (Blueprint $table) {
             $table->id();
             $table->foreignId('subject_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('teacher_id')->nullable()->constrained()->nullOnDelete();
+            $table->foreignId('faculty_id')->nullable()->constrained()->nullOnDelete();
             $table->foreignId('room_id')->nullable()->constrained()->nullOnDelete();
-            $table->string('section', 10);
+            $table->string('section', 10)->unique();
             $table->time('time_start');
             $table->time('time_end');
             $table->string('school_year');
