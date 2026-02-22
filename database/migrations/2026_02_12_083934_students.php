@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('fname',50);
             $table->string('mname',50)->nullable();
             $table->string('lname',50);
+            $table->enum('gender',  array_column(Gender::cases(), 'value'));
             $table->string('student_number')->unique();
             $table->date('birthday')->nullable();
             $table->timestamps();

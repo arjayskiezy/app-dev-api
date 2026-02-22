@@ -13,22 +13,20 @@ class UserSeeder extends Seeder
 {
     public function run(): void
     {
-        // get roles
+    /**
+     * Run the database seeds.
+     */
         $studentRole = Role::where('name', 'student')->first();
         $facultyRole = Role::where('name', 'faculty')->first();
         $adminRole = Role::where('name', 'admin')->first();
 
-        // Create 10 random users
         User::factory(10)->create()->each(function ($user) use ($studentRole, $facultyRole) {
 
-            // randomly decide if user is student or faculty
             $isStudent = rand(0,1) === 1;
 
             if ($isStudent) {
-                // assign role
                 $user->assignRole($studentRole);
 
-                // create student profile
                 Student::create([
                     'user_id' => $user->id,
                     'fname' => $user->name, 
@@ -37,10 +35,8 @@ class UserSeeder extends Seeder
                     'birthday' => '2004-01-01',
                 ]);
             } else {
-                // assign role
                 $user->assignRole($facultyRole);
 
-                // create faculty profile
                 Faculty::create([
                     'user_id' => $user->id,
                     'department_id' => 1,
@@ -52,7 +48,6 @@ class UserSeeder extends Seeder
             }
         });
 
-        // Create a admin user
         $admin = User::factory()->create([
             'name' => 'Test Admin',
             'email' => 'admin@example.com',
