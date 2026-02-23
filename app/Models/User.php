@@ -3,10 +3,13 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\Faculty;
+use App\Models\Student;
+use Spatie\Permission\Traits\HasRoles;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Spatie\Permission\Traits\HasRoles;
+
 
 class User extends Authenticatable
 {
@@ -19,7 +22,7 @@ class User extends Authenticatable
      * @var list<string>
      */
     protected $fillable = [
-        'name',
+        'username',
         'email',
         'password',
     ];
@@ -46,4 +49,14 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function student()
+    {
+        return $this->hasMany(Student::class);
+    }
+
+    public function faculty()
+    {
+        return $this->hasMany(Faculty::class);
+}
 }

@@ -29,8 +29,9 @@ class UserSeeder extends Seeder
 
                 Student::create([
                     'user_id' => $user->id,
-                    'fname' => $user->name, 
+                    'fname' => $user->username, 
                     'lname' => 'Student',
+                    'gender'=> 'male',
                     'student_number' => '2024-' . rand(1000,9999),
                     'birthday' => '2004-01-01',
                 ]);
@@ -40,8 +41,9 @@ class UserSeeder extends Seeder
                 Faculty::create([
                     'user_id' => $user->id,
                     'department_id' => 1,
-                    'fname' => $user->name,
+                    'fname' => $user->username,
                     'lname' => 'Faculty',
+                    'gender'=> 'female',
                     'employee_number' => 'EMP-' . rand(100,999),
                     'birthday' => '1990-01-01',
                 ]);
@@ -49,7 +51,7 @@ class UserSeeder extends Seeder
         });
 
         $admin = User::factory()->create([
-            'name' => 'Test Admin',
+            'username' => 'Test Admin',
             'email' => 'admin@example.com',
         ]);
 
@@ -57,8 +59,9 @@ class UserSeeder extends Seeder
         Faculty::create([
             'user_id' => $admin->id,
             'department_id' => 1,
-            'fname' => $admin->name,
+            'fname' => $admin->username,
             'lname' => 'Admin',
+            'gender'=> 'male',
             'employee_number' => 'EMP-001',
             'birthday' => '1985-01-01',
         ]);

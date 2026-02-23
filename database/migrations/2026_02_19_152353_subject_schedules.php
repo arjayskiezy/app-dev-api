@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('section', 10)->unique();
             $table->time('time_start');
             $table->time('time_end');
+            $table->decimal('max_slots', 3, 1);
             $table->string('school_year');
             $table->enum('semester', array_column(Semester::cases(), 'value'));
             $table->timestamps();
