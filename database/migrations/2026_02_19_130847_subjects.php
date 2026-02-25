@@ -17,7 +17,8 @@ return new class extends Migration
             $table->string('code', 10)->unique();
             $table->string('title',150);
             $table->string('description')->nullable();
-            $table->decimal('units', 3, 1);
+            $table->decimal('lecture', 3, 1);
+            $table->decimal('lab', 3, 1)->nullable();
             $table->timestamps();
         });
     }
