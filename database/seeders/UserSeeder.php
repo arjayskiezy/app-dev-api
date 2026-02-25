@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use App\Models\User;
 use App\Models\Student;
-use App\Models\Faculty;
+use App\Models\Teacher;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
 
@@ -17,10 +17,10 @@ class UserSeeder extends Seeder
      * Run the database seeds.
      */
         $studentRole = Role::where('name', 'student')->first();
-        $facultyRole = Role::where('name', 'faculty')->first();
+        $teacherRole = Role::where('name', 'teacher')->first();
         $adminRole = Role::where('name', 'admin')->first();
 
-        User::factory(10)->create()->each(function ($user) use ($studentRole, $facultyRole) {
+        User::factory(10)->create()->each(function ($user) use ($studentRole, $teacherRole) {
 
             $isStudent = rand(0,1) === 1;
 
@@ -36,13 +36,13 @@ class UserSeeder extends Seeder
                     'birthday' => '2004-01-01',
                 ]);
             } else {
-                $user->assignRole($facultyRole);
+                $user->assignRole($teacherRole);
 
-                Faculty::create([
+                Teacher::create([
                     'user_id' => $user->id,
                     'department_id' => 1,
                     'fname' => $user->username,
-                    'lname' => 'Faculty',
+                    'lname' => 'Teacher',
                     'gender'=> 'female',
                     'employee_number' => 'EMP-' . rand(100,999),
                     'birthday' => '1990-01-01',
@@ -56,7 +56,7 @@ class UserSeeder extends Seeder
         ]);
 
         $admin->assignRole('admin');
-        Faculty::create([
+        Teacher::create([
             'user_id' => $admin->id,
             'department_id' => 1,
             'fname' => $admin->username,

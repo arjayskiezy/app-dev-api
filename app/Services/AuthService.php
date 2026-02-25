@@ -19,7 +19,7 @@ class AuthService
             ], 401);   
         }
         
-        $user = User::with(['student','faculty'])->find($user->id);
+        $user = User::with(['student','teacher'])->find($user->id);
 
         $token =$user->createToken('token', ['*'])->plainTextToken;
 
@@ -39,7 +39,7 @@ class AuthService
             $user->password = Hash::make($data['password']);
             $user->save();
 
-            if ($data['user_type'] === 'student'|| $data['user_type'] === 'student_faculty') {
+            if ($data['user_type'] === 'student'|| $data['user_type'] === 'student_teacher') {
                 Student::create([
                     'user_id' => $user->id,
                     'fname' => $data['fname'],
@@ -50,8 +50,8 @@ class AuthService
                     'birthday' => $data['birthday'] ?? null,
                 ]);
             } 
-            if ($data['user_type'] === 'faculty'|| $data['user_type'] === 'student_faculty'){
-                Faculty::create([
+            if ($data['user_type'] === 'teacher'|| $data['user_type'] === 'student_teacher'){
+                Teacher::create([
                     'user_id' => $user->id,
                     'department_id' => $data['department_id'],
                     'fname' => $data['fname'],
@@ -65,7 +65,7 @@ class AuthService
 
             DB::commit();
 
-            $user = User::with(['student','faculty'])->find($user->id);
+            $user = User::with(['student','teacher'])->find($user->id);
 
             return response([
                 'title' => 'Registration Successful',

@@ -3,7 +3,7 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
-use App\Models\Faculty;
+use App\Models\Teacher;
 use App\Models\Student;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
@@ -57,8 +57,8 @@ class User extends Authenticatable
         return $this->hasMany(Student::class);
     }
 
-    public function faculty()
+    public function teacher()
     {
-        return $this->hasMany(Faculty::class);
+        return $this->hasMany(Teacher::class);
 }
 }

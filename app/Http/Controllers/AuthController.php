@@ -24,7 +24,7 @@ class AuthController extends Controller
         'email' => 'required|email|unique:users',
         'password' => 'required|string|confirmed',
         'remember' => 'boolean',
-        'user_type' => 'required|in:student,faculty,student_faculty',
+        'user_type' => 'required|in:student,teacher,student_teacher',
 
         'fname' => 'required|string|max:50',
         'mname' => 'nullable|string|max:50',
@@ -32,10 +32,10 @@ class AuthController extends Controller
         'gender' => 'required|in:male,female',
         'birthday' => 'nullable|date',
 
-        'student_number' => 'required_if:user_type,student,student_faculty|unique:students',
+        'student_number' => 'required_if:user_type,student,student_teacher|unique:students',
 
-        'department_id' => 'required_if:user_type,faculty,student_faculty|exists:departments,id',
-        'employee_number' => 'required_if:user_type,faculty,student_faculty|unique:faculties',
+        'department_id' => 'required_if:user_type,teacher,student_teacher|exists:departments,id',
+        'employee_number' => 'required_if:user_type,teacher,student_teacher|unique:teachers',
          ]);
 
         return $authService->register($request);
