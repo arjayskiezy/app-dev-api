@@ -11,7 +11,7 @@ class AuthService
     public function login (Request $request){
 
         $user = User::where("email", $request->email)->first();
-
+ 
         if(!$user || !Hash::check($request->password, $user->password)){
             return response([
                 "title" => "Authentication Failed",
@@ -21,8 +21,11 @@ class AuthService
         
         $user = User::with(['student','faculty'])->find($user->id);
 
+        $token =$user->createToken('token', ['*'])->plainTextToken;
+
         return response([
             "user"=> $user,
+            "token"=>$token
         ]);
     }
 
@@ -77,6 +80,15 @@ class AuthService
                 "error" => $e->getMessage()
             ], 500);
         }
+    }
+
+    public function logout(Request $request)
+    {
+
+        $request->user()->currentAccessToken()->delete();
+
+        return response(204);
+
     }
 
 }

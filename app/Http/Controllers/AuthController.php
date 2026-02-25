@@ -36,8 +36,13 @@ class AuthController extends Controller
 
         'department_id' => 'required_if:user_type,faculty,student_faculty|exists:departments,id',
         'employee_number' => 'required_if:user_type,faculty,student_faculty|unique:faculties',
-]);
+         ]);
 
         return $authService->register($request);
+    }
+
+    public function logout(Request $request, AuthService $authService){
+
+        $authService->logout($request);
     }
 }
