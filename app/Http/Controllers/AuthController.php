@@ -54,7 +54,7 @@ class AuthController extends Controller
             'birthday' => 'nullable|date',
 
             'student_number' => 'required_if:user_type,student,student_teacher|unique:students',
-            'year_level' => 'required|string_if:user_type,student,student_teacher',
+            'year_level' => 'required_if:user_type,student,student_teacher|unique:students',
 
             'department_id' => 'required_if:user_type,teacher,student_teacher|exists:departments,id',
             'employee_number' => 'required_if:user_type,teacher,student_teacher|unique:teachers',

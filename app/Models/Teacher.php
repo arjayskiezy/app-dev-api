@@ -11,7 +11,6 @@ class Teacher extends Model
      *
      * @var string
      */
-    protected $table = 'teachers';
 
     protected $fillable = [
         'user_id',

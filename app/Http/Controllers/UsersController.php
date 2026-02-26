@@ -24,17 +24,7 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'name'=> '',
-            'email'=> '',
-            'password'=> '',
-            ]);
 
-        $user = DB::table('users')->insert([
-            'name'=> $request->name,
-            'email'=> $request->email,
-            'password'=> hash($request->password),
-        ]);
     }
 
     /**
@@ -42,9 +32,6 @@ class UsersController extends Controller
      */
     public function show(Request $request)
     {
-        $user = User::findOrFail($request->user_id);
-
-        return $user;
     }
 
     /**
@@ -52,7 +39,20 @@ class UsersController extends Controller
      */
     public function update(Request $request)
     {  
-        
+        $request->validate([
+            'id' => 'required|exist:users_id',
+            'password'=> 'required|string|min:6|confirmed',
+            ]);
+
+        $user = User::find($request->id);
+
+        $user->password = bcrypt($request->password);
+        $user->save();
+        return response()->json([
+            'status'=> 'success',
+            'message'=> 'Password updated successfully'
+            ], 200);
+
     }
 
     /**
