@@ -1,6 +1,6 @@
 <?php
 
-use App\Enums\Term;
+use App\Enums\TermStatus;
 use App\Enums\Semester;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -20,7 +20,7 @@ return new class extends Migration
         $table->string('academic_year'); 
         $table->date('start_date');
         $table->date('end_date');
-        $table->enum('status', array_column(Term::cases(), 'value'));
+        $table->enum('status', array_column(TermStatus::cases(), 'value'));
         $table->timestamps();
     });
     }

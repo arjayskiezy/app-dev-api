@@ -2,7 +2,7 @@
 
 namespace App\Enums;
 
-enum Section: string
+enum SectionStatus: string
 {
     case Available = "available";
     case Unavailable = "unavailable";

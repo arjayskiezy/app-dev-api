@@ -1,6 +1,6 @@
 <?php
 
-use App\Enums\Section;
+use App\Enums\SectionStatus;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -22,7 +22,7 @@ return new class extends Migration
             $table->time('time_start');
             $table->time('time_end');
             $table->unsignedSmallInteger('max_slots');
-            $table->enum('status', array_column(Section::cases(), 'value'));
+            $table->enum('status', array_column(SectionStatus::cases(), 'value'));
             $table->timestamps();
 
             $table->unique(['subject_id','term_id','section_code']);

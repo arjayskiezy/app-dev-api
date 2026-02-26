@@ -2,7 +2,7 @@
 
 namespace App\Enums;
 
-enum Term: string
+enum TermStatus: string
 {
     case Active = "active";
     case Inactive = "inactive";
