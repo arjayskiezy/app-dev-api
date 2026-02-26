@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class UsersController extends Controller
 {
@@ -13,9 +14,9 @@ class UsersController extends Controller
      * Display a listing of the resource.
      */
     public function index() 
-    {
-        $users = User::all();
-        return $users;
+    {  
+        $users = DB::table('users')->orderBy('id')->get();
+         return $users;
     }
 
     /**
@@ -23,7 +24,17 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'name'=> '',
+            'email'=> '',
+            'password'=> '',
+            ]);
 
+        $user = DB::table('users')->insert([
+            'name'=> $request->name,
+            'email'=> $request->email,
+            'password'=> hash($request->password),
+        ]);
     }
 
     /**
@@ -31,14 +42,16 @@ class UsersController extends Controller
      */
     public function show(Request $request)
     {
+        $user = User::findOrFail($request->user_id);
 
+        return $user;
     }
 
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request)
-    {
+    {  
         
     }
 

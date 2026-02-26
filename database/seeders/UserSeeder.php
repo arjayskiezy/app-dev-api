@@ -33,6 +33,7 @@ class UserSeeder extends Seeder
                     'lname' => 'Student',
                     'gender'=> 'male',
                     'student_number' => '2024-' . rand(1000,9999),
+                    'year_level' => rand(1,5),
                     'birthday' => '2004-01-01',
                 ]);
             } else {

@@ -40,7 +40,7 @@ class AuthController extends Controller
 
     public function register(Request $request)
     {
-        $request->validate([
+        $data = $request->validate([
             'username' => 'required|string|min:6',
             'email' => 'required|email|unique:users',
             'password' => 'required|string|confirmed',
@@ -54,15 +54,17 @@ class AuthController extends Controller
             'birthday' => 'nullable|date',
 
             'student_number' => 'required_if:user_type,student,student_teacher|unique:students',
+            'year_level' => 'required|string_if:user_type,student,student_teacher',
 
             'department_id' => 'required_if:user_type,teacher,student_teacher|exists:departments,id',
             'employee_number' => 'required_if:user_type,teacher,student_teacher|unique:teachers',
         ]);
-
+        
         DB::beginTransaction();
 
         try {
             $user = new User;
+            $user->username = $data['username'];
             $user->email = $data['email'];
             $user->password = Hash::make($data['password']);
             $user->save();
@@ -75,6 +77,7 @@ class AuthController extends Controller
                     'lname' => $data['lname'],
                     'gender' => $data['gender'],
                     'student_number' => $data['student_number'],
+                    'year_level' => $data['year_level'],
                     'birthday' => $data['birthday'] ?? null,
                 ]);
             }
