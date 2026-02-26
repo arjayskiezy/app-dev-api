@@ -25,7 +25,7 @@ return new class extends Migration
             $table->enum('status', array_column(Section::cases(), 'value'));
             $table->timestamps();
 
-            $table->unique(['subject_id','school_year','semester','section_code']);
+            $table->unique(['subject_id','term_id','section_code']);
         });
 
     }
