@@ -1,9 +1,10 @@
 <?php
 
 use App\Enums\Gender;
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
+use App\Enums\YearLevel;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
@@ -20,6 +21,7 @@ return new class extends Migration
             $table->string('lname',50);
             $table->enum('gender',  array_column(Gender::cases(), 'value'));
             $table->string('student_number')->unique();
+            $table->enum('year_level', array_column(YearLevel::cases(),'value'));
             $table->date('birthday')->nullable();
             $table->timestamps();
         });

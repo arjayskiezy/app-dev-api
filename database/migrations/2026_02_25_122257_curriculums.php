@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\CurriculumType;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -17,7 +18,7 @@ return new class extends Migration
         $table->foreignId('subject_id')->constrained()->cascadeOnDelete();
         $table->integer('year');  
         $table->integer('semester');    
-        $table->enum('type', ['core','elective'])->default('core');
+        $table->enum('type', array_column(CurriculumType::cases, 'value'));
         $table->timestamps();
 
         $table->unique(['program_id','subject_id','year','semester']);
