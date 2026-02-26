@@ -12,13 +12,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('subject_schedule_days', function (Blueprint $table) {
+        Schema::create('section_days', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('subject_schedule_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('section_id')->constrained()->cascadeOnDelete();
             $table->enum('day', array_column(Day::cases(), 'value'));
             $table->timestamps();
 
-            $table->unique(['subject_schedule_id','day']);
+            $table->unique(['section_id','day']);
         });
     }
 
@@ -27,7 +27,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('subject_schedule_days');
+        Schema::dropIfExists('section_days');
 
     }
 };

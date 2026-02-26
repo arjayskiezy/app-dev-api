@@ -15,11 +15,11 @@ return new class extends Migration
         Schema::create('subject_enrollments', function (Blueprint $table) {
             $table->id();
             $table->foreignId('student_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('subject_schedule_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('section_id')->constrained()->cascadeOnDelete();
             $table->enum('status', array_column(EnrollmentStatus::cases(), 'value'));
             $table->timestamps();
 
-            $table->unique(['student_id', 'subject_schedule_id']);
+            $table->unique(['student_id', 'section_id']);
         });
     }
 
