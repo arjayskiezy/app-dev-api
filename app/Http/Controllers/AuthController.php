@@ -7,14 +7,21 @@ use Illuminate\Http\Request;
 
 class AuthController extends Controller
 {
-    public function login(Request $request, AuthService $authService)
+    private AuthService $authService;
+
+    public function __construct(AuthService $authService)
+    {
+        $this->authService = $authService;
+    }
+
+    public function login(Request $request)
     {
         $request->validate([
             'email' => 'required|email',
             'password' => 'required|string',
         ]);
 
-        return $authService->login($request);
+        return $this->authService->login($request);
     }
 
     public function register(Request $request)
@@ -38,11 +45,11 @@ class AuthController extends Controller
         'employee_number' => 'required_if:user_type,teacher,student_teacher|unique:teachers',
          ]);
 
-        return $authService->register($request);
+        return $this->authService->register($request);
     }
 
-    public function logout(Request $request, AuthService $authService){
+    public function logout(Request $request){
 
-        $authService->logout($request);
+        $this->authService->logout($request);
     }
 }

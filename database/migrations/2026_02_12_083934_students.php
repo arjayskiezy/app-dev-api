@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('lname',50);
             $table->enum('gender',  array_column(Gender::cases(), 'value'));
             $table->string('student_number')->unique();
-            $table->enum('year_level', array_column(YearLevel::cases(),'value'));
+            $table->enum('year_level', array_column(YearLevel::cases(),'value'))->nullable();
             $table->date('birthday')->nullable();
             $table->timestamps();
         });
