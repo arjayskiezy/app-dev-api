@@ -18,7 +18,7 @@ return new class extends Migration
         $table->foreignId('subject_id')->constrained()->cascadeOnDelete();
         $table->integer('year');  
         $table->integer('semester');    
-        $table->enum('type', array_column(CurriculumType::cases, 'value'));
+        $table->enum('type', array_column(CurriculumType::cases(), 'value'));
         $table->timestamps();
 
         $table->unique(['program_id','subject_id','year','semester']);

@@ -17,7 +17,7 @@ return new class extends Migration
         $table->id();
         $table->string('name');
         $table->enum('semester', array_column(Semester::cases(), 'value'));
-        $table->string('academic_year'); 
+        $table->foreignId('school_year_id')->cascadeOnDelete(); 
         $table->date('start_date');
         $table->date('end_date');
         $table->enum('status', array_column(TermStatus::cases(), 'value'));
