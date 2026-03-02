@@ -1,6 +1,5 @@
 <?php
 
-use App\Enums\Semester;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -16,8 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('student_id')->constrained()->cascadeOnDelete();
             $table->foreignId('program_id')->constrained()->cascadeOnDelete();
-            $table->string('school_year');
-            $table->enum('semester', array_column(Semester::cases(), 'value'));
+            $table->foreignId('term_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }
