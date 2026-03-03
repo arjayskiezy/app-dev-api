@@ -3,14 +3,10 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Student extends Model
 {
-    /**
-     * The table associated with the model.
-     *
-     * @var string
-     */
 
     protected $fillable = [
         'user_id',
@@ -21,5 +17,10 @@ class Student extends Model
         'student_number',
         'birthday',
     ];
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
 
 }
