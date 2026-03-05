@@ -43,4 +43,13 @@ class Term extends Model
     {
         return $this->hasMany(Enrollment::class);
     }
+
+    /**
+     * Get the section associated with the term.
+     * @return HasMany<Section>
+     */
+    public function sections(): HasMany
+    {
+        return $this->hasMany(Section::class);
+    }
 }
