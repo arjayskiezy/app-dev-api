@@ -6,11 +6,11 @@ use App\Enums\Semester;
 use App\Enums\TermStatus;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Term extends Model
 {
-    protected $fillable = 
-    [
+    protected $fillable = [
         "name",
         "school_year_id",
         "semester",
@@ -20,13 +20,27 @@ class Term extends Model
     ];
 
     protected $casts = [
-        "semester"=> Semester::class,
-        "start_date"=> "date",
-        "end_date"=>"date",
-        "status"=> TermStatus::class,
+        "semester" => Semester::class,
+        "start_date" => "date",
+        "end_date" => "date",
+        "status" => TermStatus::class,
     ];
-    public function term() : BelongsTo
+
+    /**
+     * Get the school year associated with the term.
+     * @return BelongsTo<SchoolYear>
+     */
+    public function schoolYear(): BelongsTo
     {
-        return $this->belongsTo(Term::class);
+        return $this->belongsTo(SchoolYear::class);
+    }
+
+    /**
+     * Get the enrollments associated with the term.
+     * @return HasMany<Enrollment>
+     */
+    public function enrollments(): HasMany
+    {
+        return $this->hasMany(Enrollment::class);
     }
 }

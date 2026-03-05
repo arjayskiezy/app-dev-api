@@ -12,7 +12,6 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 
-
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
@@ -24,21 +23,14 @@ class User extends Authenticatable
      *
      * @var list<string>
      */
-    protected $fillable = [
-        'username',
-        'email',
-        'password',
-    ];
+    protected $fillable = ["username", "email", "password"];
 
     /**
      * The attributes that should be hidden for serialization.
      *
      * @var list<string>
      */
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
+    protected $hidden = ["password", "remember_token"];
 
     /**
      * Get the attributes that should be cast.
@@ -48,16 +40,24 @@ class User extends Authenticatable
     protected function casts(): array
     {
         return [
-            'email_verified_at' => 'datetime',
-            'password' => 'hashed',
+            "email_verified_at" => "datetime",
+            "password" => "hashed",
         ];
     }
 
-    public function student() : HasOne
+    /**
+     * Get the student associated with the user.
+     * @return HasOne<Student>
+     */
+    public function student(): HasOne
     {
         return $this->HasOne(Student::class);
     }
 
+    /**
+     * Get the teacher associated with the user.
+     * @return HasOne<Teacher>
+     */
     public function teacher(): HasOne
     {
         return $this->HasOne(Teacher::class);

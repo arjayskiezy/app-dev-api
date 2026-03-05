@@ -41,7 +41,7 @@ class UserSeeder extends Seeder
 
                 Teacher::create([
                     'user_id' => $user->id,
-                    'department_id' => 1,
+                    'program_id' => 1,
                     'fname' => $user->username,
                     'lname' => 'Teacher',
                     'gender'=> 'female',
@@ -59,7 +59,7 @@ class UserSeeder extends Seeder
         $admin->assignRole('admin');
         Teacher::create([
             'user_id' => $admin->id,
-            'department_id' => 1,
+            'program_id' => 1,
             'fname' => $admin->username,
             'lname' => 'Admin',
             'gender'=> 'male',

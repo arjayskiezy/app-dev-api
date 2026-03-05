@@ -5,12 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Program extends Model
+class Room extends Model
 {
-    protected $fillable = ["department_id", "code", "title"];
+    protected $fillable = ["name", "department_id", "capacity"];
 
     /**
-     * Get the department associated with the program.
+     * Get the department associated with the room.
      * @return BelongsTo<Department>
      */
     public function department(): BelongsTo
