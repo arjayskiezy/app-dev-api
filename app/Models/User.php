@@ -43,19 +43,11 @@ class User extends Authenticatable
         ];
     }
 
-    /**
-     * Get the student associated with the user.
-     * @return HasOne<Student>
-     */
     public function student(): HasOne
     {
         return $this->hasOne(Student::class);
     }
 
-    /**
-     * Get the teacher associated with the user.
-     * @return HasOne<Teacher>
-     */
     public function teacher(): HasOne
     {
         return $this->hasOne(Teacher::class);

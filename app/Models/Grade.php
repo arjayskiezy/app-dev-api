@@ -9,9 +9,6 @@ class Grade extends Model
 {
     protected $fillable = ["subject_enrollment_id", "grade", "retake"];
 
-    /**
-     * @return BelongsTo<SubjectEnrollment>
-     */
     public function subjectEnrollment(): BelongsTo
     {
         return $this->belongsTo(SubjectEnrollment::class);

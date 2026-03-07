@@ -9,10 +9,6 @@ class Room extends Model
 {
     protected $fillable = ["name", "department_id", "capacity"];
 
-    /**
-     * Get the department associated with the room.
-     * @return BelongsTo<Department>
-     */
     public function department(): BelongsTo
     {
         return $this->belongsTo(Department::class);

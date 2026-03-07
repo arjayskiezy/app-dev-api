@@ -11,28 +11,16 @@ class Enrollment extends Model
 {
     protected $fillable = ["student_id", "program_id", "term_id"];
 
-    /**
-     * Get the students associated with the enrollment.
-     * @return HasMany<Student>
-     */
     public function students(): HasMany
     {
         return $this->hasMany(Student::class);
     }
 
-    /**
-     * Get the program associated with the enrollment.
-     * @return BelongsTo<Program>
-     */
     public function program(): BelongsTo
     {
         return $this->belongsTo(Program::class);
     }
 
-    /**
-     * Get the term associated with the enrollment.
-     * @return HasOne<Term>
-     */
     public function term(): HasOne
     {
         return $this->hasOne(Term::class);

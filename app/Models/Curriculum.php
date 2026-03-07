@@ -16,17 +16,11 @@ class Curriculum extends Model
         "type",
     ];
 
-    /**
-     * @return BelongsTo<Program>
-     */
     public function program(): BelongsTo
     {
         return $this->belongsTo(Program::class);
     }
 
-    /**
-     * @return HasMany<Subject>
-     */
     public function subjects(): HasMany
     {
         return $this->hasMany(Subject::class);

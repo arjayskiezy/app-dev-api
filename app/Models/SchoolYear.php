@@ -16,10 +16,7 @@ class SchoolYear extends Model
         "status" => SchoolYearStatus::class,
     ];
 
-    /**
-     * Get the terms associated with the school year.
-     * @return HasMany<Term>
-     */
+
     public function terms(): HasMany
     {
         return $this->hasMany(Term::class);

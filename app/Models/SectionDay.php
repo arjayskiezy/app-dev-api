@@ -9,9 +9,6 @@ class SectionDay extends Model
 {
     protected $fillable = ["section_id", "day"];
 
-    /**
-     * @return BelongsTo<Section>
-     */
     public function section(): BelongsTo
     {
         return $this->belongsTo(Section::class);

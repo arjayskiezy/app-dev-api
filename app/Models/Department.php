@@ -9,18 +9,11 @@ class Department extends Model
 {
     protected $fillable = ["name", "code", "title"];
 
-    /**
-     * Get the programs associated with the department.
-     * @return HasMany<Program>
-     */
     public function programs(): HasMany
     {
         return $this->hasMany(Program::class);
     }
 
-    /**
-     * @return HasMany<Room>
-     */
     public function rooms(): HasMany
     {
         return $this->hasMany(Room::class);

@@ -19,26 +19,16 @@ class Student extends Model
         "birthday",
     ];
 
-    /**
-     * Get the user associated with the student.
-     * @return BelongsTo<User>
-     */
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
-    /**
-     * @return HasMany<SubjectEnrollment>
-     */
     public function subjectEnrollments(): HasMany
     {
         return $this->hasMany(SubjectEnrollment::class);
     }
 
-    /**
-     * @return HasOne<Enrollment>
-     */
     public function enrollment(): HasOne
     {
         return $this->hasOne(Enrollment::class);

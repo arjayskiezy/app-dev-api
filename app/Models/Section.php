@@ -21,49 +21,32 @@ class Section extends Model
         "status",
     ];
 
-    /**
-     * @return BelongsTo<Subject>
-     */
+
     public function subject(): BelongsTo
     {
         return $this->belongsTo(Subject::class);
     }
 
-    /**
-     * @return HasOne<Term>
-     */
     public function term(): HasOne
     {
         return $this->hasOne(Term::class);
     }
 
-    /**
-     * @return HasOne<Teacher>
-     */
     public function teacher(): HasOne
     {
         return $this->hasOne(Teacher::class);
     }
 
-    /**
-     * @return HasMany<SubjectEnrollment>
-     */
     public function subjectEnrollment(): HasMany
     {
         return $this->hasMany(SubjectEnrollment::class);
     }
 
-    /**
-     * @return HasMany<SectionDay>
-     */
     public function sectionDays(): HasOne
     {
         return $this->hasMany(SectionDay::class);
     }
 
-    /**
-     * @return HasOne<Room>
-     */
     public function room(): HasOne
     {
         return $this->hasOne(Room::class);

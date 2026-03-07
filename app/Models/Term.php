@@ -26,28 +26,16 @@ class Term extends Model
         "status" => TermStatus::class,
     ];
 
-    /**
-     * Get the school year associated with the term.
-     * @return BelongsTo<SchoolYear>
-     */
     public function schoolYear(): BelongsTo
     {
         return $this->belongsTo(SchoolYear::class);
     }
 
-    /**
-     * Get the enrollments associated with the term.
-     * @return HasMany<Enrollment>
-     */
     public function enrollments(): HasMany
     {
         return $this->hasMany(Enrollment::class);
     }
 
-    /**
-     * Get the section associated with the term.
-     * @return HasMany<Section>
-     */
     public function sections(): HasMany
     {
         return $this->hasMany(Section::class);

@@ -17,25 +17,16 @@ class Subject extends Model
         "lab",
     ];
 
-    /**
-     * @return HasMany<Section>
-     */
     public function sections(): HasMany
     {
         return $this->hasMany(Section::class);
     }
 
-    /**
-     * @return BelongsTo<Curriculum>
-     */
     public function curriculum(): BelongsTo
     {
         return $this->belongsTo(Curriculum::class);
     }
 
-    /**
-     * @return BelongsTo<Program>
-     */
     public function program(): BelongsTo
     {
         return $this->belongsTo(Program::class);
